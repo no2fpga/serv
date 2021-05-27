@@ -23,4 +23,10 @@ module serv_rf_ram
      for (i=0;i<depth;i=i+1)
        memory[i] = {width{1'd0}};
 `endif
+
+`ifdef SERV_INIT_RAM
+   initial
+     $readmemh(`SERV_INIT_RAM, memory);
+`endif
+
 endmodule
