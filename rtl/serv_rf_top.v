@@ -68,6 +68,7 @@ module serv_rf_top
    wire               rdata0;
    wire               rdata1;
 
+   reg  [1:0]          bank;
    wire [RF_L2D-1:0]   waddr;
    wire [RF_WIDTH-1:0] wdata;
    wire                wen;
@@ -100,11 +101,18 @@ module serv_rf_top
       .o_raddr  (raddr),
       .i_rdata  (rdata));
 
+   always @(posedge clk)
+       if (i_rst)
+           bank <= 2'b00;
+       else if (i_ibus_ack)
+           bank <= o_ibus_adr[31:30];
+
    serv_rf_ram
      #(.width (RF_WIDTH),
        .csr_regs (CSR_REGS))
    rf_ram
      (.i_clk    (clk),
+      .i_bank  (bank),
       .i_waddr (waddr),
       .i_wdata (wdata),
       .i_wen   (wen),
