@@ -85,10 +85,13 @@ module serv_mem_if
               //Shift reg mode with optional clearing of bit 5
               {dat[6] & !(i_shift_op & i_cnt_done),dat[5:1]};
 
-   assign o_sh_done = dat_shamt[5];
+   assign o_sh_done = r/*dat_shamt[5]*/;
    assign o_sh_done_r = dat[5];
 
+   reg               r;
+
    always @(posedge i_clk) begin
+      r <= dat_shamt[5:0] == 6'b000000;
       if (dat_en | i_wb_ack)
         dat <= i_wb_ack ? i_wb_rdt : {i_op_b, dat[31:7], dat_shamt};
 
