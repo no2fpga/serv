@@ -75,6 +75,16 @@ module serv_rf_top
    wire [RF_L2D-1:0]   raddr;
    wire [RF_WIDTH-1:0] rdata;
 
+   reg [RF_L2D-1:0]   waddr_r;
+   reg [RF_WIDTH-1:0] wdata_r;
+   reg                wen_r;
+
+   always @(posedge clk) begin
+      waddr_r <= waddr;
+      wdata_r <= wdata;
+      wen_r   <= wen;
+   end
+
    serv_rf_ram_if
      #(.width    (RF_WIDTH),
        .reset_strategy (RESET_STRATEGY),
@@ -111,11 +121,11 @@ module serv_rf_top
      #(.width (RF_WIDTH),
        .csr_regs (CSR_REGS))
    rf_ram
-     (.i_clk    (clk),
+     (.i_clk   (clk),
       .i_bank  (bank),
-      .i_waddr (waddr),
-      .i_wdata (wdata),
-      .i_wen   (wen),
+      .i_waddr (waddr_r),
+      .i_wdata (wdata_r),
+      .i_wen   (wen_r),
       .i_raddr (raddr),
       .o_rdata (rdata));
 
