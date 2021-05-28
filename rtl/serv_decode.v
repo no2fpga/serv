@@ -1,6 +1,6 @@
 `default_nettype none
 module serv_decode #(
-   parameter integer PRE_REGISTER = 1
+   parameter integer PRE_REGISTER = 0
 )(
    input wire        clk,
    //Input
@@ -238,14 +238,14 @@ module serv_decode #(
          end
 
          always @(*) begin
-            o_sh_right         = co_sh_right;
+            o_sh_right         = 1'b0; // co_sh_right;
             o_bne_or_bge       = co_bne_or_bge;
             o_cond_branch      = co_cond_branch;
             o_e_op             = co_e_op;
-            o_ebreak           = co_ebreak;
+            o_ebreak           = 1'b0; // co_ebreak;
             o_branch_op        = co_branch_op;
             o_mem_op           = co_mem_op;
-            o_shift_op         = co_shift_op;
+            o_shift_op         = 1'b0; // co_shift_op;
             o_slt_op           = co_slt_op;
             o_rd_op            = co_rd_op;
             o_bufreg_rs1_en    = co_bufreg_rs1_en;
@@ -255,7 +255,7 @@ module serv_decode #(
             o_ctrl_jal_or_jalr = co_ctrl_jal_or_jalr;
             o_ctrl_utype       = co_ctrl_utype;
             o_ctrl_pc_rel      = co_ctrl_pc_rel;
-            o_ctrl_mret        = co_ctrl_mret;
+            o_ctrl_mret        = 1'b0; // co_ctrl_mret;
             o_alu_sub          = co_alu_sub;
             o_alu_bool_op      = co_alu_bool_op;
             o_alu_cmp_eq       = co_alu_cmp_eq;
@@ -265,18 +265,18 @@ module serv_decode #(
             o_mem_word         = co_mem_word;
             o_mem_half         = co_mem_half;
             o_mem_cmd          = co_mem_cmd;
-            o_csr_en           = co_csr_en;
-            o_csr_addr         = co_csr_addr;
-            o_csr_mstatus_en   = co_csr_mstatus_en;
-            o_csr_mie_en       = co_csr_mie_en;
-            o_csr_mcause_en    = co_csr_mcause_en;
-            o_csr_source       = co_csr_source;
-            o_csr_d_sel        = co_csr_d_sel;
-            o_csr_imm_en       = co_csr_imm_en;
+            o_csr_en           = 1'b0; // co_csr_en;
+            o_csr_addr         = 1'b0; // co_csr_addr;
+            o_csr_mstatus_en   = 1'b0; // co_csr_mstatus_en;
+            o_csr_mie_en       = 1'b0; // co_csr_mie_en;
+            o_csr_mcause_en    = 1'b0; // co_csr_mcause_en;
+            o_csr_source       = 1'b0; // co_csr_source;
+            o_csr_d_sel        = 1'b0; // co_csr_d_sel;
+            o_csr_imm_en       = 1'b0; // co_csr_imm_en;
             o_immdec_ctrl      = co_immdec_ctrl;
             o_immdec_en        = co_immdec_en;
             o_op_b_source      = co_op_b_source;
-            o_rd_csr_en        = co_rd_csr_en;
+            o_rd_csr_en        = 1'b0; // co_rd_csr_en;
             o_rd_alu_en        = co_rd_alu_en;
          end
 
@@ -294,14 +294,14 @@ module serv_decode #(
 
          always @(posedge clk) begin
             if (i_wb_en) begin
-               o_sh_right         <= co_sh_right;
+               o_sh_right         <= 1'b0; // co_sh_right;
                o_bne_or_bge       <= co_bne_or_bge;
                o_cond_branch      <= co_cond_branch;
                o_e_op             <= co_e_op;
-               o_ebreak           <= co_ebreak;
+               o_ebreak           <= 1'b0; // co_ebreak;
                o_branch_op        <= co_branch_op;
                o_mem_op           <= co_mem_op;
-               o_shift_op         <= co_shift_op;
+               o_shift_op         <= 1'b0; // co_shift_op;
                o_slt_op           <= co_slt_op;
                o_rd_op            <= co_rd_op;
                o_bufreg_rs1_en    <= co_bufreg_rs1_en;
@@ -311,7 +311,7 @@ module serv_decode #(
                o_ctrl_jal_or_jalr <= co_ctrl_jal_or_jalr;
                o_ctrl_utype       <= co_ctrl_utype;
                o_ctrl_pc_rel      <= co_ctrl_pc_rel;
-               o_ctrl_mret        <= co_ctrl_mret;
+               o_ctrl_mret        <= 1'b0; // co_ctrl_mret;
                o_alu_sub          <= co_alu_sub;
                o_alu_bool_op      <= co_alu_bool_op;
                o_alu_cmp_eq       <= co_alu_cmp_eq;
@@ -321,18 +321,18 @@ module serv_decode #(
                o_mem_word         <= co_mem_word;
                o_mem_half         <= co_mem_half;
                o_mem_cmd          <= co_mem_cmd;
-               o_csr_en           <= co_csr_en;
-               o_csr_addr         <= co_csr_addr;
-               o_csr_mstatus_en   <= co_csr_mstatus_en;
-               o_csr_mie_en       <= co_csr_mie_en;
-               o_csr_mcause_en    <= co_csr_mcause_en;
-               o_csr_source       <= co_csr_source;
-               o_csr_d_sel        <= co_csr_d_sel;
-               o_csr_imm_en       <= co_csr_imm_en;
+               o_csr_en           <= 1'b0; // co_csr_en;
+               o_csr_addr         <= 1'b0; // co_csr_addr;
+               o_csr_mstatus_en   <= 1'b0; // co_csr_mstatus_en;
+               o_csr_mie_en       <= 1'b0; // co_csr_mie_en;
+               o_csr_mcause_en    <= 1'b0; // co_csr_mcause_en;
+               o_csr_source       <= 1'b0; // co_csr_source;
+               o_csr_d_sel        <= 1'b0; // co_csr_d_sel;
+               o_csr_imm_en       <= 1'b0; // co_csr_imm_en;
                o_immdec_ctrl      <= co_immdec_ctrl;
                o_immdec_en        <= co_immdec_en;
                o_op_b_source      <= co_op_b_source;
-               o_rd_csr_en        <= co_rd_csr_en;
+               o_rd_csr_en        <= 1'b0; // co_rd_csr_en;
                o_rd_alu_en        <= co_rd_alu_en;
             end
          end

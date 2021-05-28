@@ -49,7 +49,7 @@ module serv_rf_ram_if
 
    generate if (width == 2) begin
       assign wtrig0 = ~wcnt[0];
-      assign wtrig1 =  wcnt[0];
+      assign wtrig1 = 1'b0; // wcnt[0];
    end else begin
       reg wtrig0_r;
       always @(posedge i_clk) wtrig0_r <= wtrig0;
